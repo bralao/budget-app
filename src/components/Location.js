@@ -13,7 +13,7 @@ const Location = () => {
 
 
   return (
-        <div className='alert alert-secondary'> Location {
+    <div className='alert alert-secondary w-75 d-flex justify-content-center'> Location {
       <select name="Location" id="Location" onChange={event=>changeLocation(event.target.value)}>
         <option value="£">Uk(£)</option>
         <option value="₹">India(₹)</option>
