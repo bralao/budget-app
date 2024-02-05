@@ -8,14 +8,15 @@ import ItemSelected from './components/ItemSelected';
 import Location from './components/Location';
 import SpentSoFar from './components/SpentSoFar';
 import Remaining from './components/Remaining';
+import './style/App.css';
 
 const App = () => {
     return (
       <AppProvider>
         <div className='container'>
-          <h1 className='mt-3'>Shopping App</h1>
+          <h1 className='mt-3'>Budget App</h1>
 
-          <div className='row mt-3'>
+          <div className='row mt-5'>
             <div className='col-3'>
                 <Budget />
             </div>
@@ -34,7 +35,7 @@ const App = () => {
           </div>
 
 
-          <h3 className='mt-3'>Shopping Cart</h3>
+          <h3 className='mt-3'>Budget Management</h3>
 
           <div className='row '>
             <div className='col-sm'>

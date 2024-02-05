@@ -8,7 +8,7 @@ const SpentSoFar = () => {
   }, 0);
 
   return (
-    <div className='alert alert-primary w-75 d-flex justify-content-center'>
+    <div className='alert alert-primary w-75 d-flex justify-content-center py-5'>
       <span>Spent so far: {Location}{totalExpenses}</span>
     </div>
   );

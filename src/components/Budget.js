@@ -1,35 +1,69 @@
 import React, { useContext, useState } from 'react';
 import { AppContext, setBudget } from '../context/AppContext';
+import '../style/Budget.css';
 
 const Budget = () => {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, budget, Location, CartValue } = useContext(AppContext);
   const [inputBudget, setInputBudget] = useState('');
+  const [enterPressed, setEnterPressed] = useState(false);
+
 
   const handleSetBudget = () => {
     const budgetValue = parseFloat(inputBudget);
 
     if (!isNaN(budgetValue)) {
-      // Set the budget using the setBudget action
-      setBudget(dispatch, budgetValue);
+      if (budgetValue >= CartValue && budgetValue <= 20000) {
+        console.log('Setting budget:', budgetValue);
+        setBudget(dispatch, budgetValue);
+        setEnterPressed(true);
+        setInputBudget('');
+      } else {
+      console.error('Invalid budget input');
+      }
     } else {
-      // Handle invalid input (optional)
       console.error('Invalid budget input');
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSetBudget();
+    }
+  };
+
+  React.useEffect(() => {
+    console.log('Current budget state:', budget);
+  }, [budget]);
+
   return (
     <div>
-      <button
-        className="btn btn-primary w-50 pt-3 pb-3"
-        onClick={handleSetBudget}>Set Budget
-      </button>
-      <input
-        className="w-25 p-3 ms-1 alert alert-primary"
-        type="text"
-        placeholder="Value"
-        value={inputBudget}
-        onChange={(e) => setInputBudget(e.target.value)}
-      />
+      <div className="row">
+        <div className="row justify-content-center">
+
+            <input
+              className="alert alert-primary col-8 w-50 h-25 text-center ms-4"
+              type="text"
+              placeholder="Initial Budget"
+              value={inputBudget}
+              onChange={(e) => setInputBudget(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+
+            <button
+              className="btn btn-success col-4 w-25 h-50 ms-1"
+              onClick={handleSetBudget}
+            >Set Budget</button>
+
+        </div>
+
+
+        <div className="d-flex justify-content-center">
+          <div className="w-75 h-75 text-center">
+            <h5>Initial Budget: {budget}{Location}</h5>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 };

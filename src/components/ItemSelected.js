@@ -10,23 +10,22 @@ const ItemSelected = (props) => {
 
 
     const submitEvent = () => {
+      const item = {
+        name: name,
+        quantity: parseInt(quantity),
+      };
 
-        const item = {
-            name: name,
-            quantity: parseInt(quantity),
-        };
-
-        if(action === "Reduce") {
-            dispatch({
-                type: 'RED_BUDGET',
-                payload: item,
-            });
-        } else {
-                dispatch({
-                    type: 'ADD_BUDGET',
-                    payload: item,
-                });
-            }
+      if (action === "Add") {
+        dispatch({
+          type: 'ADD_BUDGET',
+          payload: item,
+        });
+      } else if (action === "Reduce") {
+        dispatch({
+          type: 'RED_BUDGET',
+          payload: item,
+        });
+      }
     };
 
     return (
