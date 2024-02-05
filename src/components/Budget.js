@@ -5,7 +5,7 @@ import '../style/Budget.css';
 const Budget = () => {
   const { dispatch, budget, Location, CartValue } = useContext(AppContext);
   const [inputBudget, setInputBudget] = useState('');
-  const [enterPressed, setEnterPressed] = useState(false);
+  const [setEnterPressed] = useState(false);
 
 
   const handleSetBudget = () => {
