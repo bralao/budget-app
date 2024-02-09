@@ -5,10 +5,10 @@ const Location = () => {
   const {dispatch } = useContext(AppContext);
 
     const changeLocation = (val)=>{
-            dispatch({
-                type: 'CHG_LOCATION',
-                payload: val,
-            })
+      dispatch({
+          type: 'CHG_LOCATION',
+          payload: val,
+      })
     }
 
 

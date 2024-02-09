@@ -2,66 +2,57 @@ import React, { createContext, useReducer } from 'react';
 
 // 5. The reducer - this is used to update the state, based on the action
 export const AppReducer = (state, action) => {
-    let new_expenses = [];
 
-    switch (action.type) {
+  switch (action.type) {
 
-      case 'ADD_BUDGET':
-      new_expenses = state.expenses.map((expense) => {
-        if (expense.name === action.payload.name) {
-          expense.unitprice += action.payload.quantity;
-        }
-        return expense;
-      });
-
+    case 'DEL_BUDGET':
       return {
         ...state,
-        expenses: new_expenses,
+        expenses: state.expenses.map(expense => {
+          if (expense.name === action.payload.name) {
+            return { ...expense, unitprice: action.payload.unitprice };
+          }
+          return expense;
+        })
       };
 
-    case 'RED_BUDGET':
-      new_expenses = state.expenses.map((expense) => {
-        if (expense.name === action.payload.name) {
-          expense.unitprice = Math.max(expense.unitprice - action.payload.quantity, 0);
-        }
-        return expense;
-      });
-
+    case 'MODIFY_BUDGET':
       return {
         ...state,
-        expenses: new_expenses,
+        expenses: state.expenses.map(expense => {
+          if (expense.name === action.payload.name) {
+            return { ...expense, unitprice: expense.unitprice + action.payload.unitprice };
+          }
+          return expense;
+        })
       };
 
-      case 'DEL_BUDGET':
-        new_expenses = state.expenses.map((expense) => {
+    case 'RESET_BUDGET':
+      return {
+        ...state,
+        expenses: state.expenses.map(expense => {
           if (expense.name === action.payload.name) {
             return { ...expense, unitprice: 0 };
           }
           return expense;
-        });
-        return {
-          ...state,
-          expenses: new_expenses,
-        };
+        })
+      };
 
+    case 'CHG_LOCATION':
+      return {
+        ...state,
+        Location: action.payload,
+      };
 
-      case 'CHG_LOCATION':
-        action.type = "DONE";
-        state.Location = action.payload;
-        return {
-          ...state,
-          Location: action.payload,
-        };
+    case 'SET_BUDGET':
+      return {
+        ...state,
+        budget: action.payload,
+      };
 
-      case 'SET_BUDGET':
-        return {
-          ...state,
-          budget: action.payload,
-        }
-
-      default:
-        return state;
-    }
+    default:
+      return state;
+  }
 };
 
 // 1. Sets the initial state when the app loads

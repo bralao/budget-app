@@ -5,27 +5,30 @@ const ItemSelected = (props) => {
     const { dispatch} = useContext(AppContext);
 
     const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [action, setAction] = useState('');
-
+    const [unitprice, setUnitprice] = useState('');
+    const [action, setAction] = useState('Add'); // Default action is 'Add'
 
     const submitEvent = () => {
+      // Validate if unitprice is a number
+      if (isNaN(unitprice) || unitprice === '') {
+        alert('Please enter a valid unit price.');
+        return;
+      }
+
+      // eslint-disable-next-line
       const item = {
         name: name,
-        quantity: parseInt(quantity),
+        unitprice: parseInt(unitprice),
       };
 
-      if (action === "Add") {
-        dispatch({
-          type: 'ADD_BUDGET',
-          payload: item,
-        });
-      } else if (action === "Reduce") {
-        dispatch({
-          type: 'RED_BUDGET',
-          payload: item,
-        });
-      }
+      // Dispatch MODIFY_BUDGET action
+      dispatch({
+        type: 'MODIFY_BUDGET',
+        payload: {
+          name: name,
+          unitprice: action === 'Add' ? parseInt(unitprice) : -parseInt(unitprice), // Add or subtract based on action
+        },
+      });
     };
 
     return (
@@ -47,11 +50,11 @@ const ItemSelected = (props) => {
             </select>
 
             <div className="input-group-prepend" style={{ marginLeft: '2rem' }}>
-              <label className="input-group-text" htmlFor="inputGroupSelect02">Quantity</label>
+              <label className="input-group-text" htmlFor="inputGroupSelect02">Action</label>
             </div>
 
-            <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
-              <option defaultValue value="Add" name="Add">Add</option>
+            <select className="custom-select" id="inputGroupSelect02" value={action} onChange={(event) => setAction(event.target.value)}>
+              <option value="Add" name="Add">Add</option>
               <option value="Reduce" name="Reduce">Reduce</option>
             </select>
 
@@ -61,9 +64,9 @@ const ItemSelected = (props) => {
               required='required'
               type='number'
               id='cost'
-              value={quantity}
+              value={unitprice}
               style={{size: 10}}
-              onChange={(event) => setQuantity(event.target.value)}>
+              onChange={(event) => setUnitprice(event.target.value)}>
             </input>
 
             <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
