@@ -32,6 +32,7 @@ const Budget = () => {
     console.log('Current budget state:', budget);
   }, [budget]);
 
+
   return (
     <div>
 
