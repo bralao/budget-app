@@ -11,9 +11,11 @@ const Remaining = () => {
   const remainingBudget = budget - totalExpenses;
 
   return (
-    <div className='alert alert-primary w-75 d-flex justify-content-center py-5'>
+
+    <div className='alert alert-primary d-flex justify-content-center'>
       <span>Remaining: {Location}{remainingBudget}</span>
     </div>
+
   );
 };
 

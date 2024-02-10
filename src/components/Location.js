@@ -13,15 +13,15 @@ const Location = () => {
 
 
   return (
-    <div className='alert alert-secondary w-75 d-flex justify-content-center py-5'>
-    Location {
-      <select name="Location" id="Location" onChange={event=>changeLocation(event.target.value)}>
-        <option value="€">Europe(€)</option>
-        <option value="$">USA($)</option>
-        <option value="£">Uk(£)</option>
-        <option value="₹">India(₹)</option>
-        <option value="CAD">Canada(CAD)</option>
-      </select>
+    <div className='d-flex justify-content-center'>
+    {
+      <select className="alert alert-success text-white" name="Location" id="Location" onChange={event=>changeLocation(event.target.value)} style={{ backgroundColor: '#28a745', borderColor: '#28a745' }}>
+      <option value="">Currency</option>
+      <option value="€">€ Euro</option>
+      <option value="$">$ Dollar</option>
+      <option value="£">£ Pound</option>
+      <option value="₹">₹ Rupee</option>
+    </select>
       }
     </div>
     );

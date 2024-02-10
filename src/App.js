@@ -14,28 +14,29 @@ const App = () => {
     return (
       <AppProvider>
         <div className='container'>
-          <h1 className='mt-3'>Budget App</h1>
 
-          <div className='row mt-5'>
-            <div className='col-3'>
+          <h1>Budget App</h1>
+
+          <div className="row">
+            <div className='col'>
                 <Budget />
             </div>
 
-            <div className='col-3'>
+            <div className='col mt-5'>
               <Remaining/>
             </div>
 
-            <div className='col-3'>
+            <div className='col mt-5'>
               <SpentSoFar/>
             </div>
 
-            <div className='col-3'>
+            <div className='col mt-5'>
               <Location />
             </div>
           </div>
 
 
-          <h3 className='mt-3'>Budget Management</h3>
+          <h4 className='my-3 pt-4'>Budget Management</h4>
 
           <div className='row '>
             <div className='col-sm'>
@@ -43,11 +44,13 @@ const App = () => {
             </div>
           </div>
 
-          <h3 className='mt-3'>Add Items</h3>
+          <div className="my-5 py-2">
+            <h4 className='mt-3'>Add Items</h4>
 
-          <div className='row mt-3'>
-            <div className='col-sm'>
-              <ItemSelected/>
+            <div className='row mt-3'>
+              <div className='col-sm'>
+                <ItemSelected/>
+              </div>
             </div>
           </div>
 
